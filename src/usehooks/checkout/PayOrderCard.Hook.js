@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import GetCartHook from "../cart/GetCart.Hook";
 import { Notify } from "../UseNotification";
 import { GetCardOrder } from "../../redux/reducers/all-methods-method-order/Get.Card.Order";
+// import { GetCardOrder } from "../../redux/reducers/all-methods-method-order/Get.Card.Order";
 
 function PayOrderCardHook(isData) {
   const [, , , , , cartId] = GetCartHook();
@@ -17,11 +18,12 @@ function PayOrderCardHook(isData) {
       Notify("please,add products to cart", "warn");
       return;
     }
-    if (isData.length <= 0) {
-      Notify("please,choose address first", "warn");
-      return;
-    }
+    // if (isData.length <= 0) {
+    //   Notify("please,choose address first", "warn");
+    //   return;
+    // }
     setLoading(true);
+
     await dispatch(
       GetCardOrder({
         id: cartId,
@@ -36,13 +38,14 @@ function PayOrderCardHook(isData) {
     setLoading(false);
   };
   let { CardOrder } = useSelector((state) => state.GetCardOrderST);
-
   useEffect(() => {
     if (!loading) {
+      // console.log(error);
+      // console.log(CardOrder.session.url);
       if (CardOrder.status === "success") {
         Notify("order paid successfully", "success");
         if (CardOrder.session.url) {
-          window.open(CardOrder.session.url);
+          window.open(CardOrder.session.url, "_self");
         }
       } else {
         Notify("something is wrong ,try again", "error");

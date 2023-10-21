@@ -16,7 +16,6 @@ function PaymentMethod() {
   let [type, setType] = useState("");
   const onChangeMethod = (e) => {
     setType(e.target.value);
-    console.log(e.target.value);
   };
   const HandleMethod = () => {
     if (type === "credit") {
@@ -29,7 +28,7 @@ function PaymentMethod() {
   };
   return (
     <div>
-      <h3 className="mt-5">payment ways</h3>
+      <h3 className="mt-5">payment ways </h3>
       <Stack className="paymethod mt-4">
         <div>
           <label className="d-flex align-items-center fs-4 gap-3">
@@ -100,11 +99,6 @@ function PaymentMethod() {
             {`$ ${cartPriceTotal}`}
           </p>
         )}
-        {/* <p
-          className="border fs-3 p-3 m-0 text-center fw-bold rounded"
-          style={{ width: "15rem" }}>
-          $3000
-        </p> */}
       </Stack>
       <ToastContainer />
     </div>

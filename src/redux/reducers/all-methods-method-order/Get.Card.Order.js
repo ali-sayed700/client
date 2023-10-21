@@ -7,15 +7,20 @@ export let GetCardOrder = createAsyncThunk(
     let config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     };
+
     try {
       let res = await baseURL.get(
         `/api/v1/orders/checkout-session/${formData.id}`,
+
         formData.data,
         config
       );
-      return res;
+      return res.data;
     } catch (err) {
       throw rejectWithValue(err);
     }
@@ -40,7 +45,7 @@ export let GetCardOrderSlice = createSlice({
     });
     builder.addCase(GetCardOrder.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload.response;
+      state.error = action;
     });
   },
 });
