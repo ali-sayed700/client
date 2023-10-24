@@ -40,12 +40,10 @@ function PayOrderCardHook(isData) {
   let { CardOrder } = useSelector((state) => state.GetCardOrderST);
   useEffect(() => {
     if (!loading) {
-      // console.log(error);
-      // console.log(CardOrder.session.url);
       if (CardOrder.status === "success") {
         Notify("order paid successfully", "success");
         if (CardOrder.session.url) {
-          window.open(CardOrder.session.url, "_self");
+          window.open(CardOrder.session.url);
         }
       } else {
         Notify("something is wrong ,try again", "error");

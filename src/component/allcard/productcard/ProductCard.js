@@ -10,9 +10,13 @@ function ProductCard({ items, favProd }) {
   if (items) rateAve = items.ratingsAverage || 0;
   return (
     <Col xs={6} md={4} lg={2} className="d-flex justify-content-around my-4 ">
-      <Card style={{ width: "22rem" }} className="prodct-card border-0">
-        <Link to={`/products/${items._id}`}>
-          <Card.Img variant="top" src={items.imageCover} />
+      <Card className="prodct-card border-0">
+        <Link className="text-center p-4" to={`/products/${items._id}`}>
+          <Card.Img
+            className="card-image"
+            variant="top"
+            src={items.imageCover}
+          />
         </Link>
         <Card.Body>
           <Card.Title>

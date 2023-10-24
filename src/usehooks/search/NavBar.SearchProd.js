@@ -19,9 +19,9 @@ const NavBarSearch = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      getAllProd();
-    }, 1000);
+    // setTimeout(() => {
+    getAllProd();
+    // }, 1100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchWord]);
   // console.log(searchWord);

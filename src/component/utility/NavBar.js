@@ -53,8 +53,11 @@ function NavBar() {
         <Navbar.Brand href="/" className="title-text">
           Noon
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse className="w-100" id="navbarScroll">
+        <Navbar.Collapse
+          className="w-75 justify-content-center   flex-grow-0"
+          id="navbarScroll">
           {/* <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
@@ -71,46 +74,51 @@ function NavBar() {
             />
           </Form>
         </Navbar.Collapse>
-        <Navbar.Collapse className="navbar-icons text-white " id="navbarScroll">
-          {user ? (
-            <Dropdown>
-              <Button variant="success">{user.name}</Button>
+        <Navbar.Collapse
+          className="navbar-icons text-white   flex-grow-0 "
+          id="navbarScroll">
+          <div className="d-flex align-items-center">
+            {user ? (
+              <Dropdown className="me-4 ">
+                <Button variant="success" className="me-2 ">
+                  {user.name}
+                </Button>
 
-              <Dropdown.Toggle
-                split
-                variant="success"
-                id="dropdown-split-basic"
-              />
+                <Dropdown.Toggle
+                  split
+                  variant="success"
+                  id="dropdown-split-basic"
+                />
 
-              <Dropdown.Menu>
-                {user.role === "admin" ? (
-                  <Dropdown.Item href="/admin/alladmin">
-                    control panel
+                <Dropdown.Menu className="start-0">
+                  {user.role === "admin" ? (
+                    <Dropdown.Item href="/admin/alladmin">
+                      control panel
+                    </Dropdown.Item>
+                  ) : (
+                    <Dropdown.Item href="user/address">
+                      Home managment
+                    </Dropdown.Item>
+                  )}
+
+                  <Dropdown.Item onClick={logout} href="#">
+                    log out
                   </Dropdown.Item>
-                ) : (
-                  <Dropdown.Item href="user/address">
-                    Home managment
-                  </Dropdown.Item>
-                )}
-
-                <Dropdown.Item onClick={logout} href="#">
-                  log out
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          ) : (
-            <Nav.Link href="/login">
-              <i className="bx bx-user-circle bx-md ms-sm-2 title-text"></i>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Nav.Link href="/login">
+                <i className="bx bx-user-circle bx-md ms-sm-2 title-text"></i>
+              </Nav.Link>
+            )}
+            <Nav.Link href="/cart" className="position-relative my-4">
+              <i className="bx bx-cart bx-md ms-lg-2 title-text  "></i>
+              <span className=" position-absolute top-0 start-0   translate-middle  badge rounded-pill bg-danger">
+                {isCount || 0}
+                <span className="visually-hidden">unread messages</span>
+              </span>
             </Nav.Link>
-          )}
-
-          <Nav.Link href="/cart" className="position-relative">
-            <i className="bx bx-cart bx-md ms-lg-2 title-text  "></i>
-            <span className=" position-absolute top-0 start-50   translate-middle  badge rounded-pill bg-danger">
-              {isCount || 0}
-              <span className="visually-hidden">unread messages</span>
-            </span>
-          </Nav.Link>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

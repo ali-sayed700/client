@@ -9,8 +9,7 @@ import Paginations from "../../component/utility/paginations";
 
 function ShopProduct() {
   const [item, pageCount, onPages, getAllProd] = ShowSearchProd();
-
-  // console.log(item);
+  console.log(item);
   return (
     <div>
       <Header />

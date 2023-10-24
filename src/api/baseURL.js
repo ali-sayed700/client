@@ -6,12 +6,12 @@ import axios from "axios";
 // });
 const baseUrl = axios.create({
   baseURL: "https://shop-market.onrender.com",
-  withCredentials: false,
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
-    "Cache-Control": "no-cache",
-    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+    "Access-Control-Allow-Headers":
+      "Content-Type , X-Auth-Token,Origin,Authorization",
   },
 });
 

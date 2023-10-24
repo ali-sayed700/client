@@ -6,10 +6,11 @@ export let GetCardOrder = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     let config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
       },
     };
 

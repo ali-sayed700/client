@@ -6,11 +6,17 @@ export let GetReview = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     // console.log(formData);
 
-    // let config = {
-    //   headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    // };
+    let config = {
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
+      },
+    };
     try {
-      let res = await baseURL.get(formData);
+      let res = await baseURL.get(formData, config);
       // console.log(res);
       return res.data;
     } catch (err) {

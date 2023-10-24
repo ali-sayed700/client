@@ -4,8 +4,11 @@ import baseUrl from "../../../api/baseURL";
 export let PostACg = createAsyncThunk("Postcateogery", async (formData) => {
   let config = {
     headers: {
-      "content-type": "multipart/form-data",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+      "Access-Control-Allow-Headers":
+        "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
     },
   };
   let res = await baseUrl.post("/api/v1/categories", formData, config);

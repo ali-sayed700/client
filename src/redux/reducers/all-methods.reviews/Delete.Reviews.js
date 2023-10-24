@@ -7,7 +7,13 @@ export let DelReview = createAsyncThunk(
     // console.log(formData);
 
     let config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
+      },
     };
     try {
       let res = await baseURL.delete(`/api/v1/reviews/${id}`, config);

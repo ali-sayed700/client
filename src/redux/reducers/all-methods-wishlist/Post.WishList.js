@@ -5,7 +5,13 @@ export let PostWishList = createAsyncThunk(
   "wishlist",
   async (id, { rejectWithValue }) => {
     let config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
+      },
     };
     try {
       let res = await baseURL.post("/api/v1/wishlist", id, config);

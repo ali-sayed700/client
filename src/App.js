@@ -40,10 +40,10 @@ import ProductByBrand from "./pages/product/ProductByBrand";
 
 // import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-
 // if (process.env.NODE_ENV === 'production') {
 //   disableReactDevTools();
 // }
+
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [userData, isUser, isAdmin] = ProtectRouteHook();

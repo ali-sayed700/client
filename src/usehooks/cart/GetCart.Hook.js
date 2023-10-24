@@ -15,13 +15,14 @@ function GetCartHook() {
   let { cart } = useSelector((state) => state.PostCart);
   let { deleCart } = useSelector((state) => state.deleteAllCartST);
   let { UpdCart } = useSelector((state) => state.UpdateCartST);
-  let { ApplyCoupon, error } = useSelector((state) => state.ApplyCoupnSt);
+  let { ApplyCoupon } = useSelector((state) => state.ApplyCoupnSt);
+  let { prods } = useSelector((state) => state.getProducts);
 
   useEffect(() => {
     get();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, cart, deleCart, UpdCart, ApplyCoupon, error]);
+  }, [dispatch, cart, deleCart, UpdCart, ApplyCoupon, prods]);
   let get = async () => {
     setLoading(true);
     await dispatch(GetAllCarts());

@@ -5,7 +5,13 @@ export let DeletProd = createAsyncThunk(
   "delete product",
   async (id, { rejectWithValue }) => {
     let config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
+      },
     };
     try {
       let res = await BaseURL.delete(`/api/v1/products/${id}`, config);

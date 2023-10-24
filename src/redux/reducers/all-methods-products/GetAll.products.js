@@ -2,7 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import BaseURL from "../../../api/baseURL";
 
 export let GetAllProduct = createAsyncThunk("product", async (id) => {
-  let res = await BaseURL.get(id);
+  let config = {
+    headers: {
+      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+      "Access-Control-Allow-Headers":
+        "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
+    },
+  };
+  let res = await BaseURL.get(id, config);
   return res.data;
 });
 

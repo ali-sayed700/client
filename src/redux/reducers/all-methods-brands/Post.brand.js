@@ -4,10 +4,14 @@ import baseURL from "../../../api/baseURL";
 export let PostBrand = createAsyncThunk("postbrands", async (formData) => {
   let config = {
     headers: {
-      "content-type": "multipart/form-data",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+      "Access-Control-Allow-Headers":
+        "Content-Type , X-Auth-Token,Origin,Authorization",
     },
   };
+
   let res = await baseURL.post("/api/v1/brands", formData, config);
   return res;
 });

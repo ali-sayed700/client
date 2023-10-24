@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllProduct } from "../../redux/reducers/all-methods-products/GetAll.products";
-import { ShowAllProd } from "../../redux/ApiContainer/LinkCategory";
+import {
+  ShowAllProd,
+  // ShowPageProds,
+} from "../../redux/ApiContainer/LinkCategory";
 
 function ShowProdItems() {
   let dispatch = useDispatch();
+  // let [item, setItem] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       dispatch(GetAllProduct(ShowAllProd()));
-    }, 1000);
+    }, 1200);
+    // setProds([]);
   }, [dispatch]);
   // let onPages = (page) => {
   //   dispatch(GetAllProduct(ShowPageProds(3, page)));
@@ -22,6 +27,7 @@ function ShowProdItems() {
   } catch (error) {}
   // if (item.paginationResult) pageCount = item.paginationResult.numberOfPages;
   // else pageCount = 0;
+
   return [item];
 }
 

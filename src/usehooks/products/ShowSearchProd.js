@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 
 function ShowSearchProd() {
-  let limit = 3;
+  let limit = 9;
   let pageCount = 0;
   let dispatch = useDispatch();
   let [item, setItem] = useState([]);
@@ -40,11 +40,15 @@ function ShowSearchProd() {
       )
     );
   };
+  useEffect(() => {
+    getAllProd();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(GetAllProduct(ShowLimitProd(limit)));
-      getAllProd();
     }, 1000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,13 +100,15 @@ function ShowSearchProd() {
 
   // fetching all data
   let { prods } = useSelector((state) => state.getProducts);
-
+  // console.log(prods.data);
   // let item = [];
   useEffect(() => {
     if (Array.isArray(prods.data)) {
       setItem(prods);
+      // item = prods.data;
     } else {
       setItem([]);
+      // item = [];
     }
   }, [prods]);
   // page count query

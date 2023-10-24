@@ -88,7 +88,7 @@ body {
 .catogery-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .catogery-card p {
   margin-top: 1rem;
@@ -98,6 +98,10 @@ body {
 .prodct-card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: 0.3s linear;
+}
+.card-image {
+  width: 50% !important;
+  background-size: contain;
 }
 .foot {
   background-color: #26272b;

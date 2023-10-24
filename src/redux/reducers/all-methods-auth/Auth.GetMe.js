@@ -5,7 +5,13 @@ export let GetMe = createAsyncThunk(
   "Login",
   async (formData, { rejectWithValue }) => {
     let config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
+        "Access-Control-Allow-Headers":
+          "Content-Type , X-Auth-Token,Origin,Authorization",
+      },
     };
     try {
       let res = await baseURL.get("/api/v1/users/getMe", config);
