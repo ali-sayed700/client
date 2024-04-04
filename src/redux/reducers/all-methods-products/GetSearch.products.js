@@ -1,43 +1,46 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import BaseURL from "../../../api/baseURL";
 
-export let CrePro = createAsyncThunk("Addproduct", async (formData) => {
+export let GetSearchApi = createAsyncThunk("get Search", async (id) => {
+
   let config = {
     headers: {
-      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, GET, PUT DELETE",
       "Access-Control-Allow-Headers":
         "Content-Type , X-Auth-Token,Origin,Authorization ,multipart/form-data",
     },
   };
-  let res = await BaseURL.post("/api/v1/products", formData, config);
-  console.log(res.status);
-  return res;
+  let res = await BaseURL.get(id, config);
+
+  return res.data;
 });
 
-export let PostProsSlice = createSlice({
-  name: "Addproduct",
+export let GetSearchProsSlice = createSlice({
+  name: "get Search",
   initialState: {
-    prods: [],
+    getSearch: [],
+    // prodsLikes: [],
     loading: false,
     error: "",
   },
 
   extraReducers: (builder) => {
-    builder.addCase(CrePro.pending, (state) => {
+    builder.addCase(GetSearchApi.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(CrePro.fulfilled, (state, action) => {
-      state.prods = action.payload;
-      // console.log(state.prods);
+    builder.addCase(GetSearchApi.fulfilled, (state, action) => {
+      state.getSearch = action.payload;
+      // state.prodsLikes = action.payload;
+
       state.loading = false;
     });
-    builder.addCase(CrePro.rejected, (state, action) => {
+    builder.addCase(GetSearchApi.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error;
     });
   },
 });
 
-export default PostProsSlice.reducer;
+export default GetSearchProsSlice.reducer;

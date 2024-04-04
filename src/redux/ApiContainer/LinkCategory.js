@@ -85,24 +85,27 @@ export const ShowLimitAndSearch = (
   word,
   queryCate,
   queryBrand,
-  fromPrice,
-  toPrice
+  priceFromString,
+  priceToString
 ) => {
-  return `/api/v1/products?sort=${sort}${fromPrice}&limit=${limit}&keyword=${word}&${toPrice}${queryCate}&${queryBrand}`;
+
+  return `/api/v1/products?keyword=${word}&sort=${sort}${priceFromString}&limit=${limit}&${priceToString}${queryCate}&${queryBrand}`;
+  // return `/api/v1/products?keyword=${word}`;
 };
 
 // search section by page
 export const ShowPageProds = (
-  sort,
   limit,
   page,
+  sort,
   word,
   queryCate,
-  queryBrand,
-  fromPrice,
-  toPrice
+  priceFromString,
+  priceToString,
+  queryBrand
 ) => {
-  return `/api/v1/products?sort=${sort}${fromPrice}&limit=${limit}&page=${page}&keyword=${word}&${toPrice}${queryCate}&${queryBrand}`;
+  return `/api/v1/products?sort=${sort}${priceFromString}&limit=${limit}&page=${page}&keyword=${word}&${priceToString}${queryCate}&${queryBrand}`;
+  // return `/api/v1/products?limit=${limit}&page=${page}}`
 };
 
 // end search section

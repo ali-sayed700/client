@@ -6,6 +6,7 @@ const NavBarSearch = () => {
   // eslint-disable-next-line no-undef
   const [, , , getAllProd] = ShowSearchProd();
   const [searchWord, setSearchWord] = useState("");
+
   const naviSearch = useNavigate();
   const OnChangeSearch = (e) => {
     localStorage.setItem("searchWord", e.target.value);
@@ -19,9 +20,9 @@ const NavBarSearch = () => {
   };
 
   useEffect(() => {
-    // setTimeout(() => {
+    setTimeout(() => {
     getAllProd();
-    // }, 1100);
+    }, 1100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchWord]);
   // console.log(searchWord);

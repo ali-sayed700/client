@@ -29,6 +29,7 @@ function SideBarSearchProd() {
 
   const clickCateFilter = async (e) => {
     let value = e.target.value;
+
     if (value === "0") {
       await setCateChecked([]);
     } else {
@@ -48,9 +49,9 @@ function SideBarSearchProd() {
     queryCate = cateChecked.map((val) => "category[in]=" + val).join("&");
 
     localStorage.setItem("queryCategory", queryCate);
-    // setTimeout(() => {
+    setTimeout(() => {
     getAllProd();
-    // }, 1100);
+    }, 1100);
   }, [cateChecked]);
 
   const clickBrandFilter = (e) => {
@@ -73,9 +74,9 @@ function SideBarSearchProd() {
     queryBrand = brandChecked.map((val) => "brand[in]=" + val).join("&");
 
     localStorage.setItem("queryBrand", queryBrand);
-    // setTimeout(() => {
+    setTimeout(() => {
     getAllProd();
-    // }, 1100);
+    }, 1100);
   }, [brandChecked]);
 
   const fromPrice = (e) => {
@@ -87,9 +88,9 @@ function SideBarSearchProd() {
     setToPr(e.target.value);
   };
   useEffect(() => {
-    // setTimeout(() => {
+    setTimeout(() => {
     getAllProd();
-    // }, 1100);
+    }, 1100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fromP, toP]);
 

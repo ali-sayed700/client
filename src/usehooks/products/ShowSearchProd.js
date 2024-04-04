@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetAllProduct } from "../../redux/reducers/all-methods-products/GetAll.products";
+// import { GetAllProduct } from "../../redux/reducers/all-methods-products/GetAll.products";
 import {
   ShowLimitAndSearch,
-  ShowLimitProd,
+  // ShowLimitProd,
   ShowPageProds,
 } from "../../redux/ApiContainer/LinkCategory";
 import { useState } from "react";
+import { GetSearchApi } from "../../redux/reducers/all-methods-products/GetSearch.products";
 
 function ShowSearchProd() {
   let limit = 9;
@@ -22,12 +23,13 @@ function ShowSearchProd() {
   let toPrice = "";
   let priceFromString = "";
   let priceToString = "";
+
   const getAllProd = async () => {
     getStorage();
     SortData();
 
     await dispatch(
-      GetAllProduct(
+      GetSearchApi(
         ShowLimitAndSearch(
           sort,
           limit,
@@ -40,34 +42,35 @@ function ShowSearchProd() {
       )
     );
   };
-  useEffect(() => {
-    getAllProd();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   // getAllProd();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(GetAllProduct(ShowLimitProd(limit)));
-    }, 1000);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     // dispatch(GetSearchApi(ShowLimitProd(limit)));
+  //   }, 1000);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch]);
 
   let onPages = async (page) => {
     getStorage();
     SortData();
-
     await dispatch(
-      GetAllProduct(
+      GetSearchApi(
         ShowPageProds(
-          sort,
           limit,
           page,
+          sort,
           word,
           queryCate,
           priceFromString,
-          priceToString
+          priceToString,
+          queryBrand
         )
       )
     );
@@ -99,18 +102,20 @@ function ShowSearchProd() {
   };
 
   // fetching all data
-  let { prods } = useSelector((state) => state.getProducts);
-  // console.log(prods.data);
+  // let { prods } = useSelector((state) => state.getProducts);
+  let { getSearch } = useSelector((state) => state.getSearchPRo);
+
+  
   // let item = [];
   useEffect(() => {
-    if (Array.isArray(prods.data)) {
-      setItem(prods);
+    if (Array.isArray(getSearch.data)) {
+      setItem(getSearch);
       // item = prods.data;
     } else {
       setItem([]);
       // item = [];
     }
-  }, [prods]);
+  }, [getSearch]);
   // page count query
   if (item.paginationResult) pageCount = item.paginationResult.numberOfPages;
   else pageCount = 0;
@@ -137,6 +142,7 @@ function ShowSearchProd() {
       sort = "";
     }
   };
+
   return [item, pageCount, onPages, getAllProd];
 }
 

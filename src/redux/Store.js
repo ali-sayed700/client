@@ -47,6 +47,7 @@ import GetOneCashOrderSlice from "./reducers/all-methods-method-order/GetOne.Cas
 import UpdateOrderPaySlice from "./reducers/all-methods-method-order/Update.Order.Pay";
 import UpdateOrderDeliverSlice from "./reducers/all-methods-method-order/Update.Order.Deliver";
 import GetCardOrderSlice from "./reducers/all-methods-method-order/Get.Card.Order";
+import  GetSearchProsSlice  from "./reducers/all-methods-products/GetSearch.products";
 
 let store = configureStore({
   reducer: {
@@ -58,6 +59,7 @@ let store = configureStore({
     getonesubcateg: GetOneSubCategSlice,
     productions: PostProsSlice,
     getProducts: GetAllProsSlice,
+    getSearchPRo: GetSearchProsSlice,
     getAllProdLikes: GetAllProdLikeSlice,
     getOneProd: GetOneProdsSlice,
     deletProds: DeletProdSlice,

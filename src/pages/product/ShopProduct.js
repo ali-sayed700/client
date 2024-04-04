@@ -8,8 +8,8 @@ import ShowSearchProd from "../../usehooks/products/ShowSearchProd";
 import Paginations from "../../component/utility/paginations";
 
 function ShopProduct() {
-  const [item, pageCount, onPages, getAllProd] = ShowSearchProd();
-  console.log(item);
+  const [item, pageCount , onPages, getAllProd] = ShowSearchProd();
+
   return (
     <div>
       <Header />
